@@ -1,23 +1,21 @@
 package models
 
+import "flume-client/components/setting"
+
 type AccountModel struct {
-    AccountId   string
-    AccountName string
-    ChrId       string
-    ChrName     string
-    ChrLvl      int32
-    ChrLvlVip   int32
+    AccountId   string  `ini:"ACCOUNT_ID"`
+    AccountName string  `ini:"ACCOUNT_NAME"`
+    ChrId       string  `ini:"CHR_ID"`
+    ChrName     string  `ini:"CHR_NAME"`
+    ChrLvl      int32   `ini:"CHR_LVL"`
+    ChrLvlVip   int32   `ini:"CHR_LVL_VIP"`
 }
 
 var Account AccountModel
 
 func init() {
-    Account = AccountModel{
-        "123123",
-        "caicai",
-        "123",
-        "hehe",
-        4,
-        2,
+    err := setting.Cfg.Section("models.account").MapTo(&Account)
+    if err != nil {
+        panic(err)
     }
 }

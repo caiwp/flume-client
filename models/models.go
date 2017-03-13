@@ -7,20 +7,20 @@ import (
     "reflect"
 )
 
-var log logging.Logger
+var l logging.Logger
 
 type Model interface {
-    Init()
+    Init() error
     GetType() string
 }
 
 func getData(l interface{}) ([]byte, error) {
     var sl []interface{}
 
-	val := reflect.ValueOf(l)
-	if val.Kind() == reflect.Ptr {
-		val = val.Elem()
-	}
+    val := reflect.ValueOf(l)
+    if val.Kind() == reflect.Ptr {
+        val = val.Elem()
+    }
 
     for i := 0; i < val.NumField(); i ++ {
         f := val.Field(i)
@@ -47,7 +47,7 @@ func GetEvent(m Model) *flume.ThriftFlumeEvent {
     var err error
     event.Body, err = getData(m)
 
-    log.Info("Body: %s", string(event.GetBody()))
+    l.Info("Body: %s", string(event.GetBody()))
     if err != nil {
         panic(err)
     }

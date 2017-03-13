@@ -1,29 +1,32 @@
 package models
 
+import "flume-client/components/setting"
+
 type VirtualCurrencyModel struct {
     ProductModel
     IpTimeModel
     AccountModel
-    Category       string
-    Project        string
-    Info           string
-    OpCount        int32
-    QuantityBefore int32
+    Category       string   `ini:"CATEGORY"`
+    Project        string   `ini:"PROJECT"`
+    Info           string   `ini:"INFO"`
+    OpCount        int32    `ini:"OP_COUNT"`
+    QuantityBefore int32    `ini:"QUANTITY_BEFORE"`
 }
 
 var VirtualCurrency VirtualCurrencyModel
 
-func (v *VirtualCurrencyModel) Init() {
+func (v *VirtualCurrencyModel) Init() error {
     VirtualCurrency = VirtualCurrencyModel{
         ProductModel: Product,
         IpTimeModel: IpTime,
         AccountModel: Account,
-        Category: "元宝",
-        Project: "装备出售",
-        Info: "",
-        OpCount: 20,
-        QuantityBefore: 2000,
     }
+
+    err := setting.Cfg.Section("models.virtual_currency").MapTo(&VirtualCurrency)
+    if err != nil {
+        return err
+    }
+    return nil
 }
 
 func (VirtualCurrencyModel) GetType() string {

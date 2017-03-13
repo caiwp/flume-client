@@ -1,27 +1,31 @@
 package models
 
+import "flume-client/components/setting"
+
 type VirtualItemModel struct {
     ProductModel
     IpTimeModel
     AccountModel
-    ItemId   string
-    ItemName string
-    TypeName string
-    OpCount  int32
+    ItemId   string     `ini:"ITEM_ID"`
+    ItemName string     `ini:"ITEM_NAME"`
+    TypeName string     `ini:"TYPE_NAME"`
+    OpCount  int32      `ini:"OP_COUNT"`
 }
 
 var VirtualItem VirtualItemModel
 
-func (v *VirtualItemModel) Init() {
+func (v *VirtualItemModel) Init() error {
     VirtualItem = VirtualItemModel{
         ProductModel: Product,
         IpTimeModel: IpTime,
         AccountModel: Account,
-        ItemId: "123123",
-        ItemName: "牛皮副具",
-        TypeName: "商场购买",
-        OpCount: 20,
     }
+
+    err := setting.Cfg.Section("models.virtual_item").MapTo(&VirtualItem)
+    if err != nil {
+        return err
+    }
+    return nil
 }
 
 func (VirtualItemModel) GetType() string {

@@ -6,7 +6,6 @@ import (
     "flume-client/components/log"
     "time"
     "flume-client/components/setting"
-    "gopkg.in/ini.v1"
 )
 
 var (
@@ -36,7 +35,10 @@ func main() {
 
     go func() {
         for _, v := range ms {
-            sendData(client, v)
+            err := sendData(client, v)
+            if err != nil {
+                l.Error("send data failed: %s", err)
+            }
         }
         done <- true
     }()
@@ -46,12 +48,7 @@ func main() {
 }
 
 func loadConfig() error {
-    setting.Cfg = ini.Empty()
-    conf := "conf/app.ini"
-    err := setting.Cfg.Append(conf)
-    if err != nil {
-        return err
-    }
+    var err error
     sec := setting.Cfg.Section("client")
     host = sec.Key("DIST_HOST").String()
     port, err = sec.Key("DIST_PORT").Int()
@@ -62,8 +59,8 @@ func loadConfig() error {
     return nil
 }
 
-func sendData(cl *client.FlumeClient, m models.Model) {
+func sendData(cl *client.FlumeClient, m models.Model) error {
     m.Init()
     evt := models.GetEvent(m)
-    cl.Append(evt)
+    return cl.Append(evt)
 }
