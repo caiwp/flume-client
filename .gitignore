@@ -23,7 +23,9 @@ _testmain.go
 *.test
 *.prof
 
+# IDE
 .idea
-/log
 
-flume-client
+/flume-client
+
+/log

@@ -8,11 +8,17 @@
 			"revision": ""
 		},
 		{
+			"checksumSHA1": "XMbFUjCgOeWPM1znwtcmOUjY7OM=",
+			"path": "gopkg.in/ini.v1",
+			"revision": "300e940a926eb277d3901b20bdfcc54928ad3642",
+			"revisionTime": "2017-03-13T04:11:30Z"
+		},
+		{
 			"checksumSHA1": "rL5r44ASTGubGW88gqQwlvVQshw=",
 			"path": "gopkg.in/op/go-logging.v1",
 			"revision": "b2cb9fa56473e98db8caba80237377e83fe44db5",
 			"revisionTime": "2016-02-11T21:21:56Z"
 		}
 	],
-	"rootPath": "flumeclient"
+	"rootPath": "flume-client"
 }
