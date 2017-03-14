@@ -31,6 +31,7 @@ func main() {
         &models.VirtualCurrency,
         &models.VirtualItem,
         &models.LevelUp,
+        &models.TaskLog,
     }
 
     go func() {

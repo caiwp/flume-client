@@ -29,5 +29,5 @@ func (v *VirtualItemModel) Init() error {
 }
 
 func (VirtualItemModel) GetType() string {
-    return "virtual-item"
+    return "virtual-items"
 }

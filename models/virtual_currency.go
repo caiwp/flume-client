@@ -30,5 +30,5 @@ func (v *VirtualCurrencyModel) Init() error {
 }
 
 func (VirtualCurrencyModel) GetType() string {
-    return "virtual-currency"
+    return "virtual-currencies"
 }
