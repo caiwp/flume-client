@@ -6,6 +6,7 @@ import (
     "flume-client/components/log"
     "time"
     "flume-client/components/setting"
+    "flag"
 )
 
 var (
@@ -13,9 +14,28 @@ var (
 
     host string
     port int
+
+    done chan struct{}
+
+    category string
+    ms map[string]models.Model
 )
 
+func Init() {
+    done = make(chan struct{})
+    flag.StringVar(&category, "category", "all", "a string var")
+    ms = map[string]models.Model{
+        "virtual-currency": &models.VirtualCurrency,
+        "virtual-item": &models.VirtualItem,
+        "level-up": &models.LevelUp,
+        "task-log": &models.TaskLog,
+        "online": &models.Online,
+    }
+}
+
 func main() {
+    Init()
+
     t0 := time.Now()
     defer func() {
         l.Info("End time duration: %.4fs", time.Since(t0).Seconds())
@@ -24,28 +44,45 @@ func main() {
         panic(err)
     }
 
+    flag.Parse()
+
     client := client.NewFlumeClient(host, port)
 
-    done := make(chan bool, 1)
-    ms := []models.Model{
-        &models.VirtualCurrency,
-        &models.VirtualItem,
-        &models.LevelUp,
-        &models.TaskLog,
-    }
+    if (category != "all") {
+        m, ok := ms[category]
+        if !ok {
+            l.Error("category not found: %s", category)
+            return
+        }
 
-    go func() {
-        for _, v := range ms {
-            err := sendData(client, v)
-            if err != nil {
+        go func() {
+            if err := sendData(client, m); err != nil {
                 l.Error("send data failed: %s", err)
             }
-        }
-        done <- true
-    }()
+            stop()
+        }()
+    } else {
+        go func() {
+            for _, v := range ms {
+                if err := sendData(client, v); err != nil {
+                    l.Error("send data failed: %s", err)
+                    stop()
+                }
+            }
+            stop()
+        }()
+    }
 
-    <-done
+    waitForStop()
     return
+}
+
+func stop() {
+    close(done)
+}
+
+func waitForStop() {
+    <-done
 }
 
 func loadConfig() error {

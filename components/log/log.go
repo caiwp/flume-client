@@ -16,7 +16,7 @@ func NewLogger(logType string) *logging.Logger {
         panic(err)
     }
 
-    format := logging.MustStringFormatter(`%{level:.4s} %{time:15:04:05.000} %{shortfunc} ▶ %{message}`)
+    format := logging.MustStringFormatter(`%{time:15:04:05.000} %{level:.4s} %{shortfunc} ▶ %{message}`)
 
     bk := logging.NewLogBackend(f, "", 0)
     bf := logging.NewBackendFormatter(bk, format)
