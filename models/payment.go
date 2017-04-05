@@ -1,6 +1,10 @@
 package models
 
-import "flume-client/components/setting"
+import (
+	"flume-client/components/setting"
+	"fmt"
+	"time"
+)
 
 type PaymentModel struct {
 	ProductModel
@@ -31,6 +35,7 @@ func (PaymentModel) Init() error {
 		return err
 	}
 
+	Payment.OrderId = fmt.Sprintf("%s-%d", Payment.OrderId, time.Now().Unix())
 	return nil
 }
 
