@@ -33,6 +33,7 @@ func Init() {
 		"login":            &models.Login,
 		"session":          &models.Session,
 		"payment":          &models.Payment,
+		"device":           &models.Devices,
 	}
 }
 
