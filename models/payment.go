@@ -1,9 +1,10 @@
 package models
 
 import (
-	"flume-client/components/setting"
 	"fmt"
 	"time"
+
+	"flume-client/components/setting"
 )
 
 type PaymentModel struct {

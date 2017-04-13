@@ -2,7 +2,6 @@ package models
 
 import (
 	"flume-client/components/setting"
-	"time"
 )
 
 type DevicesModel struct {
@@ -11,7 +10,8 @@ type DevicesModel struct {
 	ProductName  string `ini:"PRODUCT_NAME"`
 	PlatformName string `ini:"PLATFORM_NAME"`
 	ChannelName  string `ini:"CHANNEL_NAME"`
-	Time         string `ini:"TIME"`
+
+	IpTimeModel
 }
 
 var Devices DevicesModel
@@ -19,14 +19,13 @@ var Devices DevicesModel
 func (DevicesModel) Init() error {
 	Devices = DevicesModel{
 		DeviceModel: Device,
+		IpTimeModel: IpTime,
 	}
 
-	err := setting.Cfg.Section("models.product").MapTo(&Devices)
+	var err error
+	err = setting.Cfg.Section("models.product").MapTo(&Devices)
 	if err != nil {
 		return err
-	}
-	if Devices.Time == "" {
-		Devices.Time = time.Now().Format("2006-01-02 15:04:05")
 	}
 	return nil
 }

@@ -2,11 +2,12 @@ package main
 
 import (
 	"flag"
+	"time"
+
 	"flume-client/components/client"
 	"flume-client/components/log"
 	"flume-client/components/setting"
 	"flume-client/models"
-	"time"
 )
 
 var (

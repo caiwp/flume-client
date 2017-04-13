@@ -1,6 +1,10 @@
 package models
 
-import "flume-client/components/setting"
+import (
+	"flume-client/components/setting"
+	"fmt"
+	"time"
+)
 
 type DeviceModel struct {
 	DeviceId    string `ini:"DEVICE_ID"`
@@ -18,4 +22,5 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	Device.DeviceId = fmt.Sprintf("%s-%d", Device.DeviceId, time.Now().Unix())
 }
