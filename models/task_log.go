@@ -1,6 +1,10 @@
 package models
 
-import "flume-client/components/setting"
+import (
+	"flume-client/components/setting"
+	"fmt"
+	"time"
+)
 
 type TaskLogModel struct {
 	ProductModel
@@ -28,6 +32,7 @@ func (TaskLogModel) Init() error {
 	if err != nil {
 		return err
 	}
+	TaskLog.Session_id = fmt.Sprintf("%s-%d", TaskLog.Session_id, time.Now().Unix())
 	return nil
 }
 

@@ -1,6 +1,10 @@
 package models
 
-import "flume-client/components/setting"
+import (
+	"flume-client/components/setting"
+	"fmt"
+	"time"
+)
 
 type LoginModel struct {
 	ProductModel
@@ -25,6 +29,7 @@ func (LoginModel) Init() error {
 	if err != nil {
 		return err
 	}
+	Login.Session_id = fmt.Sprintf("%s-%d", Login.Session_id, time.Now().Unix())
 	return nil
 }
 

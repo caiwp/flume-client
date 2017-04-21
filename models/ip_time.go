@@ -5,6 +5,8 @@ import (
 	"time"
 )
 
+const TIME_FORMAT = "2006-01-02 15:04:05"
+
 type IpTimeModel struct {
 	Ip   string `ini:"IP"`
 	Time string `ini:"TIME"`
@@ -18,6 +20,6 @@ func init() {
 		panic(err)
 	}
 	if IpTime.Time == "" {
-		IpTime.Time = time.Now().Format("2006-01-02 15:04:05")
+		IpTime.Time = time.Now().Format(TIME_FORMAT)
 	}
 }
