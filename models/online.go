@@ -1,6 +1,9 @@
 package models
 
-import "flume-client/components/setting"
+import (
+	"flume-client/components/setting"
+	"math/rand"
+)
 
 type OnlineModel struct {
 	ProductModel
@@ -20,6 +23,7 @@ func (o *OnlineModel) Init() error {
 	if err != nil {
 		return err
 	}
+	Online.Num = rand.Int31n(1000)
 	return nil
 }
 

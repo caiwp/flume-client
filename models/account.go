@@ -1,6 +1,9 @@
 package models
 
-import "flume-client/components/setting"
+import (
+	"flume-client/components/setting"
+	"math/rand"
+)
 
 type AccountModel struct {
 	AccountId   string `ini:"ACCOUNT_ID"`
@@ -18,4 +21,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	Account.ChrLvl = rand.Int31n(100)
+	Account.ChrLvlVip = rand.Int31n(5)
 }
