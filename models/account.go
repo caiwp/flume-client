@@ -1,8 +1,9 @@
 package models
 
 import (
-	"flume-client/components/setting"
 	"math/rand"
+
+	"flume-client/components/setting"
 )
 
 type AccountModel struct {
@@ -12,6 +13,8 @@ type AccountModel struct {
 	ChrName     string `ini:"CHR_NAME"`
 	ChrLvl      int32  `ini:"CHR_LVL"`
 	ChrLvlVip   int32  `ini:"CHR_LVL_VIP"`
+	Career      string `ini:"CAREER"`
+	Gender      string `ini:"GENDER"`
 }
 
 var Account AccountModel
