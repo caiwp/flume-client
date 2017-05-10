@@ -16,6 +16,7 @@ type PaymentModel struct {
 	OrderId        string `ini:"ORDER_ID"`
 	CurrencyType   string `ini:"CURRENCY_TYPE"`
 	CurrencyAmount int    `ini:"CURRENCY_AMOUNT"`
+	PayCategory    int    `ini:"PAY_CATEGORY"`
 	PackageName    string `ini:"PACKAGE_NAME"`
 	PayChannel     string `ini:"PAY_CHANNEL"`
 	VirtualAmount  int    `ini:"VIRTUAL_AMOUNT"`
