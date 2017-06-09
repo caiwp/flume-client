@@ -2,25 +2,34 @@ package models
 
 import (
 	"flume-client/components/setting"
-	"fmt"
-	"time"
 )
 
-type DeviceModel struct {
-	DeviceId    string `ini:"DEVICE_ID"`
-	Model       string `ini:"MODEL"`
-	Os          string `ini:"OS"`
-	Carrier     string `ini:"CARRIER"`
-	NetworkType string `ini:"NETWORK_TYPE"`
-	Resolution  string `ini:"RESOLUTION"`
+type DevicesModel struct {
+	DeviceModel
+
+	ProductName  string `json:"product_name" ini:"PRODUCT_NAME"`
+	PlatformName string `json:"platform_name" ini:"PLATFORM_NAME"`
+	ChannelName  string `json:"channel_name" ini:"CHANNEL_NAME"`
+
+	IPTimeModel
 }
 
-var Device DeviceModel
+var Devices DevicesModel
 
-func init() {
-	err := setting.Cfg.Section("models.device").MapTo(&Device)
-	if err != nil {
-		panic(err)
+func (DevicesModel) Init() error {
+	Devices = DevicesModel{
+		DeviceModel: Device,
+		IPTimeModel: IPTime,
 	}
-	Device.DeviceId = fmt.Sprintf("%s-%d", Device.DeviceId, time.Now().Unix())
+
+	var err error
+	err = setting.Cfg.Section("models.product").MapTo(&Devices)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (DevicesModel) GetType() string {
+	return "device"
 }

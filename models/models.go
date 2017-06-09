@@ -2,9 +2,11 @@ package models
 
 import (
 	"encoding/json"
+
 	"flume-client/components/flume"
+
+	"github.com/Sirupsen/logrus"
 	"gopkg.in/op/go-logging.v1"
-	"reflect"
 )
 
 var l logging.Logger
@@ -14,29 +16,13 @@ type Model interface {
 	GetType() string
 }
 
-func getData(l interface{}) ([]byte, error) {
-	var sl []interface{}
-
-	val := reflect.ValueOf(l)
-	if val.Kind() == reflect.Ptr {
-		val = val.Elem()
+func getJson(l interface{}) ([]byte, error) {
+	res, err := json.Marshal(l)
+	if err != nil {
+		return nil, err
 	}
 
-	for i := 0; i < val.NumField(); i++ {
-		f := val.Field(i)
-		if f.Kind() == reflect.Struct {
-			ej := reflect.ValueOf(f.Interface())
-			for j := 0; j < ej.NumField(); j++ {
-				fj := ej.Field(j)
-				sl = append(sl, fj.Interface())
-			}
-		} else if f.Kind() == reflect.Ptr {
-			continue
-		} else {
-			sl = append(sl, f.Interface())
-		}
-	}
-	return json.Marshal(sl)
+	return res, nil
 }
 
 func GetEvent(m Model) *flume.ThriftFlumeEvent {
@@ -45,9 +31,9 @@ func GetEvent(m Model) *flume.ThriftFlumeEvent {
 		"type": m.GetType(),
 	}
 	var err error
-	event.Body, err = getData(m)
+	event.Body, err = getJson(m)
+	logrus.Info(m.GetType() + ":" + string(event.Body))
 
-	l.Info("Body: %s", string(event.GetBody()))
 	if err != nil {
 		panic(err)
 	}

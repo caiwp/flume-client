@@ -36,6 +36,8 @@ func Init() {
 		"payment":          &models.Payment,
 		"device":           &models.Devices,
 		"entry":            &models.Entry,
+		"custom-event":     &models.CustomEvent,
+		"join-log":         &models.JoinLog,
 	}
 }
 

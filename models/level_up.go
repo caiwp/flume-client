@@ -4,10 +4,10 @@ import "flume-client/components/setting"
 
 type LevelUpModel struct {
 	ProductModel
-	IpTimeModel
+	IPTimeModel
 	AccountModel
-	CurrentlyExp int32 `ini:"CURRENTLY_EXP"`
-	Exp          int32 `ini:"EXP"`
+	CurrentlyExp int32 `json:"currently_exp" ini:"CURRENTLY_EXP"`
+	Exp          int32 `json:"exp" ini:"EXP"`
 }
 
 var LevelUp LevelUpModel
@@ -15,7 +15,7 @@ var LevelUp LevelUpModel
 func (LevelUpModel) Init() error {
 	LevelUp = LevelUpModel{
 		ProductModel: Product,
-		IpTimeModel:  IpTime,
+		IPTimeModel:  IPTime,
 		AccountModel: Account,
 	}
 

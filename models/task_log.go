@@ -8,15 +8,17 @@ import (
 
 type TaskLogModel struct {
 	ProductModel
-	IpTimeModel
+	IPTimeModel
 	AccountModel
 
-	Operate    int32  `ini:"OPERATE"`
-	Name       string `ini:"NAME"`
-	Type       string `ini:"TYPE"`
-	Result     int32  `ini:"RESULT"`
-	Reason     string `ini:"REASON"`
-	Session_id string `ini:"SESSION_ID"`
+	Operate   int32  `json:"operate" ini:"OPERATE"`
+	TaskID    int32  `json:"task_id" ini:"TASK_ID"`
+	Name      string `json:"name" ini:"NAME"`
+	TypeID    int32  `json:"type_id" ini:"TYPE_ID"`
+	Type      string `json:"type" ini:"TYPE"`
+	Result    int32  `json:"result" ini:"RESULT"`
+	Reason    string `json:"reason" ini:"REASON"`
+	SessionID string `json:"session_id" ini:"SESSION_ID"`
 }
 
 var TaskLog TaskLogModel
@@ -24,7 +26,7 @@ var TaskLog TaskLogModel
 func (TaskLogModel) Init() error {
 	TaskLog = TaskLogModel{
 		ProductModel: Product,
-		IpTimeModel:  IpTime,
+		IPTimeModel:  IPTime,
 		AccountModel: Account,
 	}
 
@@ -32,7 +34,7 @@ func (TaskLogModel) Init() error {
 	if err != nil {
 		return err
 	}
-	TaskLog.Session_id = fmt.Sprintf("%s-%d", TaskLog.Session_id, time.Now().Unix())
+	TaskLog.SessionID = fmt.Sprintf("%s-%d", TaskLog.SessionID, time.Now().Unix())
 	return nil
 }
 

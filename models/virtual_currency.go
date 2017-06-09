@@ -4,13 +4,13 @@ import "flume-client/components/setting"
 
 type VirtualCurrencyModel struct {
 	ProductModel
-	IpTimeModel
+	IPTimeModel
 	AccountModel
-	Category       string `ini:"CATEGORY"`
-	Project        string `ini:"PROJECT"`
-	Info           string `ini:"INFO"`
-	OpCount        int32  `ini:"OP_COUNT"`
-	QuantityBefore int32  `ini:"QUANTITY_BEFORE"`
+	Category       string `json:"category" ini:"CATEGORY"`
+	Project        string `json:"project" ini:"PROJECT"`
+	Info           string `json:"info" ini:"INFO"`
+	OpCount        int32  `json:"op_count" ini:"OP_COUNT"`
+	QuantityBefore int32  `json:"quantity_before" ini:"QUANTITY_BEFORE"`
 }
 
 var VirtualCurrency VirtualCurrencyModel
@@ -18,7 +18,7 @@ var VirtualCurrency VirtualCurrencyModel
 func (VirtualCurrencyModel) Init() error {
 	VirtualCurrency = VirtualCurrencyModel{
 		ProductModel: Product,
-		IpTimeModel:  IpTime,
+		IPTimeModel:  IPTime,
 		AccountModel: Account,
 	}
 

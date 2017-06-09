@@ -4,12 +4,12 @@ import "flume-client/components/setting"
 
 type VirtualItemModel struct {
 	ProductModel
-	IpTimeModel
+	IPTimeModel
 	AccountModel
-	ItemId   string `ini:"ITEM_ID"`
-	ItemName string `ini:"ITEM_NAME"`
-	TypeName string `ini:"TYPE_NAME"`
-	OpCount  int32  `ini:"OP_COUNT"`
+	ItemID   int32  `json:"item_id" ini:"ITEM_ID"`
+	ItemName string `json:"item_name" ini:"ITEM_NAME"`
+	TypeName string `json:"type_name" ini:"TYPE_NAME"`
+	OpCount  int32  `json:"op_count" ini:"OP_COUNT"`
 }
 
 var VirtualItem VirtualItemModel
@@ -17,7 +17,7 @@ var VirtualItem VirtualItemModel
 func (VirtualItemModel) Init() error {
 	VirtualItem = VirtualItemModel{
 		ProductModel: Product,
-		IpTimeModel:  IpTime,
+		IPTimeModel:  IPTime,
 		AccountModel: Account,
 	}
 

@@ -2,17 +2,17 @@ package models
 
 import (
 	"flume-client/components/setting"
+	"fmt"
 	"math/rand"
 	"time"
-	"fmt"
 )
 
 type SessionModel struct {
 	ProductModel
-	IpTimeModel
+	IPTimeModel
 	AccountModel
 
-	Session_id string `ini:"SESSION_ID"`
+	SessionID string `json:"session_id" ini:"SESSION_ID"`
 }
 
 var Session SessionModel
@@ -20,7 +20,7 @@ var Session SessionModel
 func (SessionModel) Init() error {
 	Session = SessionModel{
 		ProductModel: Product,
-		IpTimeModel:  IpTime,
+		IPTimeModel:  IPTime,
 		AccountModel: Account,
 	}
 
@@ -32,14 +32,14 @@ func (SessionModel) Init() error {
 	if err != nil {
 		return err
 	}
-	t, err := time.ParseInLocation(TIME_FORMAT, Session.Time, loc)
+	t, err := time.ParseInLocation(TimeFormat, Session.DateTime, loc)
 	if err != nil {
 		return err
 	}
-	dt := time.Unix(t.Unix() + rand.Int63n(1000), 0)
-	Session.Time = dt.Format(TIME_FORMAT)
+	dt := time.Unix(t.Unix()+rand.Int63n(1000), 0)
+	Session.DateTime = dt.Format(TimeFormat)
 
-	Session.Session_id = fmt.Sprintf("%s-%d", Session.Session_id, time.Now().Unix())
+	Session.SessionID = fmt.Sprintf("%s-%d", Session.SessionID, time.Now().Unix())
 	return nil
 }
 

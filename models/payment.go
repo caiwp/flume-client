@@ -9,17 +9,17 @@ import (
 
 type PaymentModel struct {
 	ProductModel
-	IpTimeModel
+	IPTimeModel
 	AccountModel
 	DeviceModel
 
-	OrderId        string `ini:"ORDER_ID"`
-	CurrencyType   string `ini:"CURRENCY_TYPE"`
-	CurrencyAmount int    `ini:"CURRENCY_AMOUNT"`
-	PayCategory    int    `ini:"PAY_CATEGORY"`
-	PackageName    string `ini:"PACKAGE_NAME"`
-	PayChannel     string `ini:"PAY_CHANNEL"`
-	VirtualAmount  int    `ini:"VIRTUAL_AMOUNT"`
+	OrderID        string `json:"order_id" ini:"ORDER_ID"`
+	CurrencyType   string `json:"currency_type" ini:"CURRENCY_TYPE"`
+	CurrencyAmount int    `json:"currency_amount" ini:"CURRENCY_AMOUNT"`
+	PayCategory    int    `json:"pay_category" ini:"PAY_CATEGORY"`
+	PackageName    string `json:"package_name" ini:"PACKAGE_NAME"`
+	PayChannel     string `json:"pay_channel" ini:"PAY_CHANNEL"`
+	VirtualAmount  int    `json:"virtual_amount" ini:"VIRTUAL_AMOUNT"`
 }
 
 var Payment PaymentModel
@@ -27,7 +27,7 @@ var Payment PaymentModel
 func (PaymentModel) Init() error {
 	Payment = PaymentModel{
 		ProductModel: Product,
-		IpTimeModel:  IpTime,
+		IPTimeModel:  IPTime,
 		AccountModel: Account,
 		DeviceModel:  Device,
 	}
@@ -37,7 +37,7 @@ func (PaymentModel) Init() error {
 		return err
 	}
 
-	Payment.OrderId = fmt.Sprintf("%s-%d", Payment.OrderId, time.Now().Unix())
+	Payment.OrderID = fmt.Sprintf("%s-%d", Payment.OrderID, time.Now().Unix())
 	return nil
 }
 

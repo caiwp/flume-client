@@ -5,22 +5,22 @@ import (
 )
 
 type EntryModel struct {
-	ProductName  string `ini:"PRODUCT_NAME"`
-	PlatformName string `ini:"PLATFORM_NAME"`
-	ChannelName  string `ini:"CHANNEL_NAME"`
+	ProductName  string `json:"product_name" ini:"PRODUCT_NAME"`
+	PlatformName string `json:"platform_name" ini:"PLATFORM_NAME"`
+	ChannelName  string `json:"channel_name" ini:"CHANNEL_NAME"`
 
-	IpTimeModel
+	IPTimeModel
 
-	AccountId   string `ini:"ACCOUNT_ID"`
-	AccountName string `ini:"ACCOUNT_NAME"`
-	Step        int32 `ini:"STEP"`
+	AccountID   string `json:"account_id" ini:"ACCOUNT_ID"`
+	AccountName string `json:"account_name" ini:"ACCOUNT_NAME"`
+	Step        int32  `json:"step" ini:"STEP"`
 }
 
 var Entry EntryModel
 
 func (EntryModel) Init() error {
 	Entry = EntryModel{
-		IpTimeModel: IpTime,
+		IPTimeModel: IPTime,
 	}
 
 	var err error

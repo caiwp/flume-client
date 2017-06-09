@@ -8,11 +8,11 @@ import (
 
 type LoginModel struct {
 	ProductModel
-	IpTimeModel
+	IPTimeModel
 	AccountModel
 	DeviceModel
 
-	Session_id string `ini:"SESSION_ID"`
+	SessionID string `json:"session_id" ini:"SESSION_ID"`
 }
 
 var Login LoginModel
@@ -20,7 +20,7 @@ var Login LoginModel
 func (LoginModel) Init() error {
 	Login = LoginModel{
 		ProductModel: Product,
-		IpTimeModel:  IpTime,
+		IPTimeModel:  IPTime,
 		AccountModel: Account,
 		DeviceModel:  Device,
 	}
@@ -29,7 +29,7 @@ func (LoginModel) Init() error {
 	if err != nil {
 		return err
 	}
-	Login.Session_id = fmt.Sprintf("%s-%d", Login.Session_id, time.Now().Unix())
+	Login.SessionID = fmt.Sprintf("%s-%d", Login.SessionID, time.Now().Unix())
 	return nil
 }
 
