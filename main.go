@@ -39,6 +39,7 @@ func Init() {
 		"custom-event": &models.CustomEvent,
 		"join-log":     &models.JoinLog,
 		"rank-list":    &models.RankList,
+		"chat":         &models.Chat,
 	}
 }
 
