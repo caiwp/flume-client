@@ -3,9 +3,8 @@ package models
 import (
 	"encoding/json"
 
-	"flume-client/components/flume"
-
 	"github.com/Sirupsen/logrus"
+	"github.com/caiwp/utils"
 	"gopkg.in/op/go-logging.v1"
 )
 
@@ -25,8 +24,8 @@ func getJson(l interface{}) ([]byte, error) {
 	return res, nil
 }
 
-func GetEvent(m Model) *flume.ThriftFlumeEvent {
-	event := flume.NewThriftFlumeEvent()
+func GetEvent(m Model) *utils.ThriftFlumeEvent {
+	event := utils.NewThriftFlumeEvent()
 	event.Headers = map[string]string{
 		"type": m.GetType(),
 	}

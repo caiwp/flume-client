@@ -8,6 +8,24 @@
 			"revision": ""
 		},
 		{
+			"checksumSHA1": "ZKxETlJdB2XubMrZnXB0FQimVA8=",
+			"path": "github.com/Sirupsen/logrus",
+			"revision": "10f801ebc38b33738c9d17d50860f484a0988ff5",
+			"revisionTime": "2017-03-17T14:32:14Z"
+		},
+		{
+			"checksumSHA1": "DE8sapXZ3wGdDtbhJupbpJD7abQ=",
+			"path": "github.com/caiwp/utils",
+			"revision": "a85bbed479d6bbe80c221b493f5f362c5deacfd7",
+			"revisionTime": "2017-08-21T09:46:28Z"
+		},
+		{
+			"checksumSHA1": "Tkb1hBdBWeO7SGjixS2Hm48F6+s=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "fb4cac33e3196ff7f507ab9b2d2a44b0142f5b5a",
+			"revisionTime": "2017-06-14T06:48:48Z"
+		},
+		{
 			"checksumSHA1": "XMbFUjCgOeWPM1znwtcmOUjY7OM=",
 			"path": "gopkg.in/ini.v1",
 			"revision": "300e940a926eb277d3901b20bdfcc54928ad3642",

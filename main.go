@@ -4,10 +4,11 @@ import (
 	"flag"
 	"time"
 
-	"flume-client/components/client"
 	"flume-client/components/log"
 	"flume-client/components/setting"
 	"flume-client/models"
+
+	"github.com/caiwp/utils"
 )
 
 var (
@@ -56,7 +57,7 @@ func main() {
 
 	flag.Parse()
 
-	client := client.NewFlumeClient(host, port)
+	client := utils.NewFlumeClient(host, port)
 
 	if category != "all" {
 		m, ok := ms[category]
@@ -107,7 +108,7 @@ func loadConfig() error {
 	return nil
 }
 
-func sendData(cl *client.FlumeClient, m models.Model) error {
+func sendData(cl *utils.FlumeClient, m models.Model) error {
 	m.Init()
 	evt := models.GetEvent(m)
 	return cl.Append(evt)
