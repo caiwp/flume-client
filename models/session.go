@@ -11,6 +11,7 @@ type SessionModel struct {
 	ProductModel
 	IPTimeModel
 	AccountModel
+	VersionModel
 
 	SessionID string `json:"session_id" ini:"SESSION_ID"`
 }
@@ -22,6 +23,7 @@ func (SessionModel) Init() error {
 		ProductModel: Product,
 		IPTimeModel:  IPTime,
 		AccountModel: Account,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.session").MapTo(&Session)

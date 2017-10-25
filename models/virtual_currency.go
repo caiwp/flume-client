@@ -6,6 +6,8 @@ type VirtualCurrencyModel struct {
 	ProductModel
 	IPTimeModel
 	AccountModel
+	VersionModel
+
 	Category       string `json:"category" ini:"CATEGORY"`
 	Project        string `json:"project" ini:"PROJECT"`
 	Info           string `json:"info" ini:"INFO"`
@@ -20,6 +22,7 @@ func (VirtualCurrencyModel) Init() error {
 		ProductModel: Product,
 		IPTimeModel:  IPTime,
 		AccountModel: Account,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.virtual_currency").MapTo(&VirtualCurrency)

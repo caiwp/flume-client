@@ -12,6 +12,7 @@ type PaymentModel struct {
 	IPTimeModel
 	AccountModel
 	DeviceModel
+	VersionModel
 
 	OrderID        string `json:"order_id" ini:"ORDER_ID"`
 	CurrencyType   string `json:"currency_type" ini:"CURRENCY_TYPE"`
@@ -30,6 +31,7 @@ func (PaymentModel) Init() error {
 		IPTimeModel:  IPTime,
 		AccountModel: Account,
 		DeviceModel:  Device,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.payment").MapTo(&Payment)

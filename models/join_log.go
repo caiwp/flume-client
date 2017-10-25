@@ -6,6 +6,7 @@ type JoinLogModel struct {
 	ProductModel
 	IPTimeModel
 	AccountModel
+	VersionModel
 
 	Type      string `json:"type" ini:"TYPE"`
 	Name      string `json:"name" ini:"NAME"`
@@ -20,6 +21,7 @@ func (JoinLogModel) Init() error {
 		ProductModel: Product,
 		IPTimeModel:  IPTime,
 		AccountModel: Account,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.join_log").MapTo(&JoinLog)

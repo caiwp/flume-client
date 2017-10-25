@@ -6,6 +6,7 @@ type CustomEventModel struct {
 	ProductModel
 	IPTimeModel
 	AccountModel
+	VersionModel
 
 	EventName string `json:"event_name" ini:"EVENT_NAME"`
 	Comments  string `json:"comments" ini:"COMMENTS"`
@@ -19,6 +20,7 @@ func (CustomEventModel) Init() error {
 		ProductModel: Product,
 		IPTimeModel:  IPTime,
 		AccountModel: Account,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.custom_event").MapTo(&CustomEvent)

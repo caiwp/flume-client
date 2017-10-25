@@ -6,6 +6,7 @@ type ChatModel struct {
 	ProductModel
 	IPTimeModel
 	AccountModel
+	VersionModel
 
 	Type    string `json:"type" ini:"TYPE"`
 	Content string `json:"content" ini:"CONTENT"`
@@ -20,6 +21,7 @@ func (ChatModel) Init() error {
 		ProductModel: Product,
 		IPTimeModel:  IPTime,
 		AccountModel: Account,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.chat").MapTo(&Chat)

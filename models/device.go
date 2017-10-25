@@ -12,14 +12,16 @@ type DevicesModel struct {
 	ChannelName  string `json:"channel_name" ini:"CHANNEL_NAME"`
 
 	IPTimeModel
+	VersionModel
 }
 
 var Devices DevicesModel
 
 func (DevicesModel) Init() error {
 	Devices = DevicesModel{
-		DeviceModel: Device,
-		IPTimeModel: IPTime,
+		DeviceModel:  Device,
+		IPTimeModel:  IPTime,
+		VersionModel: Version,
 	}
 
 	var err error

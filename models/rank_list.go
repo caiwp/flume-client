@@ -6,11 +6,12 @@ type RankListModel struct {
 	ProductModel
 	IPTimeModel
 	AccountModel
+	VersionModel
 
 	Type     string `json:"type" ini:"TYPE"`
-	Value    int32 `json:"value" ini:"VALUE"`
+	Value    int32  `json:"value" ini:"VALUE"`
 	Comments string `json:"comments" ini:"COMMENTS"`
-	Rank     int32 `json:"rank" ini:"RANK"`
+	Rank     int32  `json:"rank" ini:"RANK"`
 }
 
 var RankList RankListModel
@@ -20,6 +21,7 @@ func (RankListModel) Init() error {
 		ProductModel: Product,
 		IPTimeModel:  IPTime,
 		AccountModel: Account,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.rank_list").MapTo(&RankList)

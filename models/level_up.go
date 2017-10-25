@@ -6,6 +6,8 @@ type LevelUpModel struct {
 	ProductModel
 	IPTimeModel
 	AccountModel
+	VersionModel
+
 	CurrentlyExp int32 `json:"currently_exp" ini:"CURRENTLY_EXP"`
 	Exp          int32 `json:"exp" ini:"EXP"`
 }
@@ -17,6 +19,7 @@ func (LevelUpModel) Init() error {
 		ProductModel: Product,
 		IPTimeModel:  IPTime,
 		AccountModel: Account,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.level_up").MapTo(&LevelUp)

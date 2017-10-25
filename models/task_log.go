@@ -19,6 +19,8 @@ type TaskLogModel struct {
 	Result    int32  `json:"result" ini:"RESULT"`
 	Reason    string `json:"reason" ini:"REASON"`
 	SessionID string `json:"session_id" ini:"SESSION_ID"`
+
+	VersionModel
 }
 
 var TaskLog TaskLogModel
@@ -28,6 +30,7 @@ func (TaskLogModel) Init() error {
 		ProductModel: Product,
 		IPTimeModel:  IPTime,
 		AccountModel: Account,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.task_log").MapTo(&TaskLog)

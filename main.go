@@ -41,6 +41,7 @@ func Init() {
 		"join-log":     &models.JoinLog,
 		"rank-list":    &models.RankList,
 		"chat":         &models.Chat,
+		"shop":         &models.Shop,
 	}
 }
 

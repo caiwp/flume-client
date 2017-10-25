@@ -11,6 +11,7 @@ type LoginModel struct {
 	IPTimeModel
 	AccountModel
 	DeviceModel
+	VersionModel
 
 	SessionID string `json:"session_id" ini:"SESSION_ID"`
 }
@@ -23,6 +24,7 @@ func (LoginModel) Init() error {
 		IPTimeModel:  IPTime,
 		AccountModel: Account,
 		DeviceModel:  Device,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.login").MapTo(&Login)

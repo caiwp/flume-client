@@ -10,6 +10,7 @@ type EntryModel struct {
 	ChannelName  string `json:"channel_name" ini:"CHANNEL_NAME"`
 
 	IPTimeModel
+	VersionModel
 
 	AccountID   string `json:"account_id" ini:"ACCOUNT_ID"`
 	AccountName string `json:"account_name" ini:"ACCOUNT_NAME"`
@@ -20,7 +21,8 @@ var Entry EntryModel
 
 func (EntryModel) Init() error {
 	Entry = EntryModel{
-		IPTimeModel: IPTime,
+		IPTimeModel:  IPTime,
+		VersionModel: Version,
 	}
 
 	var err error

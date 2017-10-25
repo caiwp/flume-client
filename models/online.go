@@ -7,6 +7,7 @@ import (
 
 type OnlineModel struct {
 	ProductModel
+	VersionModel
 
 	DateTime string `json:"date_time"`
 	Num      int32  `json:"num" ini:"NUM"`
@@ -18,6 +19,7 @@ func (o *OnlineModel) Init() error {
 	Online = OnlineModel{
 		ProductModel: Product,
 		DateTime:     IPTime.DateTime,
+		VersionModel: Version,
 	}
 
 	err := setting.Cfg.Section("models.online").MapTo(&Online)
