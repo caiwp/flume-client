@@ -42,6 +42,9 @@ func Init() {
 		"rank-list":    &models.RankList,
 		"chat":         &models.Chat,
 		"shop":         &models.Shop,
+		"pet":          &models.Pet,
+		"kafka":        &models.Kafka,
+		"mail":         &models.Mail,
 	}
 }
 
